@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Log Activity</h2>
+    <form method="POST">
+        <label for="activity">Activity:</label>
+        <input type="text" id="activity" name="activity" required><br><br>
+        <label for="start_time">Start Time:</label>
+        <input type="datetime-local" id="start_time" name="start_time" required><br><br>
+        <label for="end_time">End Time:</label>
+        <input type="datetime-local" id="end_time" name="end_time" required><br><br>
+        <input type="submit" value="Log Activity">
+    </form>
+
+    <h3>Logged Activities</h3>
+    <ul>
+    {% for activity in activities %}
+        <li>{{ activity.activity }} from {{ activity.start_time }} to {{ activity.end_time }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

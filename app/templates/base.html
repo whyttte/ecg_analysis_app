@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+    <head>
+        <title>ECG Analysis</title>
+    </head>
+    <body>
+        <h1>ECG Analysis</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('upload') }}">Upload</a>
+            <a href="{{ url_for('activity_log') }}">Log Activity</a>
+        </nav>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>

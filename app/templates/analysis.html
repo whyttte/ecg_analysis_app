@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Analysis Results</h2>
+    <div id="plot">
+        {{ plot_div|safe }}
+    </div>
+    <h3>Interpretation</h3>
+    <p>{{ interpretation }}</p>
+
+    <h3>Logged Activities</h3>
+    <ul>
+    {% for activity in activities %}
+        <li>{{ activity.activity }} from {{ activity.start_time }} to {{ activity.end_time }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
