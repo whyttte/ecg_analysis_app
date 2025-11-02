@@ -59,12 +59,16 @@ def analysis():
         except Exception as e:
             return str(e)
 
-        sampling_rate = session.get('sampling_rate', 360) # Default to 360 if not in session
-        interpretation, peaks = analyze_ecg(df, sampling_rate)
+        sampling_rate = session.get('sampling_rate', 360)
 
-        # Assume the first column is time and the second is the ECG signal
-        time_col = df.columns[0]
-        signal_col = df.columns[1]
+        # Check for required columns
+        if len(df.columns) < 2:
+            return "ECG data must have at least two columns."
+
+        time_col, signal_col = df.columns[0], df.columns[1]
+        signal = df[signal_col]
+
+        interpretation, peaks = analyze_ecg(signal, sampling_rate)
 
         fig = px.line(df, x=time_col, y=signal_col, title='ECG Signal')
         fig.add_scatter(x=df[time_col][peaks], y=df[signal_col][peaks], mode='markers', name='R-peaks')
